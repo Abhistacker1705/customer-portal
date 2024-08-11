@@ -38,6 +38,11 @@ const PhotoGrid: React.FC = () => {
 
 	useEffect(() => {
 		const photoRotationInterval = setInterval(() => {
+			if (photos.length > 1000) {
+				setCurrentIndex(9);
+				setPhotos([]);
+				setPageNo(1);
+			}
 			setCurrentIndex((prevIndex) => {
 				const newIndex = prevIndex + 9;
 				if (newIndex >= photos.length) {
@@ -62,7 +67,7 @@ const PhotoGrid: React.FC = () => {
 						key={index}
 						src={photo}
 						alt={`Customer-image-${index}`}
-						className="w-full h-auto rounded-3xl duration-200 hover:scale-105"
+						className="w-full h-auto duration-200 rounded-3xl hover:scale-105"
 					/>
 				))
 			)}
